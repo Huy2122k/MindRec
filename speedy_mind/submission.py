@@ -6,6 +6,7 @@ import logging
 import torch
 import numpy as np
 import zipfile
+from tqdm import tqdm
 
 from utility.utils import (setuplogger,  dump_args, check_args_environment)
 from data_handler.preprocess import get_news_feature, infer_news
@@ -51,7 +52,7 @@ def prediction(model, args, device, category_dict, subcategory_dict):
         )
 
         f = open('prediction.txt', 'w', encoding='utf-8')
-        for cnt, (impids, log_vecs, log_mask, candidate_vec) in enumerate(dataloader.generate_batch()):
+        for cnt, (impids, log_vecs, log_mask, candidate_vec) in enumerate(tqdm(dataloader.generate_batch())):
 
             if args.enable_gpu:
                 log_vecs = log_vecs.cuda(device=device, non_blocking=True)
