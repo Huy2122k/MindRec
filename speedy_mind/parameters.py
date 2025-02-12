@@ -16,6 +16,7 @@ def parse_args():
     parser.add_argument("--model_dir", type=str, default='./saved_models/')
     parser.add_argument("--npratio", type=int, default=1)
     parser.add_argument("--enable_gpu", type=utils.str2bool, default=True)
+    parser.add_argument("--dist_train", type=utils.str2bool, default=True)
     parser.add_argument("--enable_shuffle", type=utils.str2bool, default=True)
     parser.add_argument("--enable_prefetch", type=utils.str2bool, default=True)
     parser.add_argument("--num_workers", type=int, default=2)

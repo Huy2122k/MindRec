@@ -46,7 +46,7 @@ def ddp_train_vd(args):
     end_train = mp.Manager().Value('b', False)
     mp.spawn(train,
              args=(
-             args, cache_state, data_files, end_dataloder, end_train),
+             args, cache_state, data_files, end_dataloder, end_train, args.dist_train),
              nprocs=args.world_size,
              join=True)
 
