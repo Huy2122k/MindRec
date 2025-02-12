@@ -245,6 +245,8 @@ class DataLoaderLeader(DataLoaderTest):
                 news_feature_batch.append(news_feature)
 
                 if len(impids)==self.args.batch_size:
+                    user_feature_batch = np.array(user_feature_batch)
+                    log_mask_batch = np.array(log_mask_batch)
                     user_feature_batch = torch.FloatTensor(user_feature_batch).cuda()
                     log_mask_batch = torch.FloatTensor(log_mask_batch).cuda()
                     yield impids, user_feature_batch, log_mask_batch, news_feature_batch
@@ -252,6 +254,8 @@ class DataLoaderLeader(DataLoaderTest):
                     impids, user_feature_batch, log_mask_batch, news_feature_batch = [], [], [], []
 
         if len(impids)>0:
+            user_feature_batch = np.array(user_feature_batch)
+            log_mask_batch = np.array(log_mask_batch)
             user_feature_batch = torch.FloatTensor(user_feature_batch).cuda()
             log_mask_batch = torch.FloatTensor(log_mask_batch).cuda()
             yield impids, user_feature_batch, log_mask_batch, news_feature_batch

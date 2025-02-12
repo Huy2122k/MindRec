@@ -250,12 +250,16 @@ class DataLoaderTrainForSpeedyRec(IterableDataset):
             label_batch.append(0)
 
         if self.args.enable_gpu:
+            input_ids = np.array(input_ids)
             input_ids = torch.LongTensor(input_ids).cuda()
+            hist_sequence = np.array(hist_sequence)
             hist_sequence = torch.LongTensor(hist_sequence).cuda()
+            hist_sequence_mask = np.array(hist_sequence_mask)
             hist_sequence_mask = torch.FloatTensor(hist_sequence_mask).cuda()
+            candidate_inx = np.array(candidate_inx)
             candidate_inx = torch.LongTensor(candidate_inx).cuda()
+            label_batch = np.array(label_batch)
             label_batch = torch.LongTensor(label_batch).cuda()
-
         else:
             input_ids = torch.LongTensor(input_ids)
             hist_sequence = torch.LongTensor(hist_sequence)
