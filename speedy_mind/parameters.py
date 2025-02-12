@@ -83,6 +83,7 @@ def parse_args():
     # Turing
     parser.add_argument("--pretreained_model", type=str, default='unilm', choices=['unilm', 'others'])
     parser.add_argument("--pretrained_model_path", type=str, default='../tnlr')
+    parser.add_argument("--pretrained_tokenize_model_path", type=str, default='microsoft/unilm-base-cased')
     parser.add_argument("--config-name", type=str, default='unilm2-base-uncased-config.json')
     parser.add_argument("--model_name_or_path", type=str, default='unilm2-base-uncased.bin')
     parser.add_argument("--tokenizer_name", type=str, default='unilm2-base-uncased-vocab.txt')
