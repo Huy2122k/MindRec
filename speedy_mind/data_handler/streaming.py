@@ -66,7 +66,7 @@ class StreamReader:
 
         dataset = dataset.batch(batch_size)
         dataset = dataset.prefetch(3)
-        self.next_batch = dataset.make_one_shot_iterator().get_next()
+        self.next_batch =  iter(dataset).get_next()
         self.session = None
 
 
@@ -248,7 +248,7 @@ class StreamReaderTest(StreamReader):
         
         dataset = dataset.batch(batch_size)
         dataset = dataset.prefetch(1)
-        self.next_batch = dataset.make_one_shot_iterator().get_next()
+        self.next_batch = iter(dataset).get_next()
         self.session = None
 
 
