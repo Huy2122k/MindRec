@@ -3,7 +3,8 @@ import logging
 import fnmatch
 import random
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 from queue import Queue
 from concurrent.futures import ThreadPoolExecutor
 import sys
@@ -248,7 +249,7 @@ class StreamReaderTest(StreamReader):
         
         dataset = dataset.batch(batch_size)
         dataset = dataset.prefetch(1)
-        self.next_batch = iter(dataset).get_next()
+        self.next_batch = dataset.make_one_shot_iterator().get_next()
         self.session = None
 
 
